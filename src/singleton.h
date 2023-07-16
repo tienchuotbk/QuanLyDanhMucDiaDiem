@@ -12,7 +12,7 @@
 #include <stdlib.h>
 #include <pthread.h>
 using namespace std;
-#define BUFF_SIZE 1024
+#define BUFF_SIZE 2048
 
 class Singleton {
 public:

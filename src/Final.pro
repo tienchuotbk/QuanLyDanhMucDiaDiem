@@ -11,6 +11,8 @@ CONFIG += c++17
 SOURCES += \
     changeinfor.cpp \
     client.cpp \
+    comment.cpp \
+    friendinfo.cpp \
     location.cpp \
     login.cpp \
     main.cpp \
@@ -22,6 +24,8 @@ SOURCES += \
 HEADERS += \
     changeinfor.h \
     client.h \
+    comment.h \
+    friendinfo.h \
     location.h \
     login.h \
     mainwindow.h \
@@ -32,6 +36,8 @@ HEADERS += \
 
 FORMS += \
     changeinfor.ui \
+    comment.ui \
+    friendinfo.ui \
     login.ui \
     mainwindow.ui \
     postscreen.ui

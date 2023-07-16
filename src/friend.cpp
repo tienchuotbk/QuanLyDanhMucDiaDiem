@@ -1,8 +1,14 @@
 #include "friend.h"
-#include "user.h"
-#include "list"
-using namespace std;
+#include "ui_friend.h"
 
-void FriendList::add_friend(User user){
+Friend::Friend(const QString& id, QWidget *parent) :
+    QDialog(parent),
+    ui(new Ui::Friend)
+{
+    ui->setupUi(this);
+}
 
+Friend::~FriendDialog()
+{
+    delete ui;
 }

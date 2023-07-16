@@ -35,6 +35,8 @@ void login::get_input(){
     this->password = ui->input_password->text();
     this->data = "{\"username\": \""+this->username+"\", \"password\": \""+this->password+"\"}";
     qDebug() << this->data;
+    ui->input_user->clear();
+    ui->input_password->clear();
 }
 
 void login::on_btn_register_clicked()

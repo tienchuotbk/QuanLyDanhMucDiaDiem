@@ -1,14 +1,22 @@
 #ifndef FRIEND_H
 #define FRIEND_H
-#include "user.h"
-#include "list"
-using namespace std;
+#include <QString>
+#include <QDialog>
 
-class FriendList {
+namespace Ui {
+class Friend;
+}
+
+class Friend : public QDialog
+{
+    Q_OBJECT
+
 public:
-    list<User> friends;
-    void add_friend(User user);
+    explicit Friend(QString& id,QWidget *parent = nullptr);
+    ~Friend();
+
 private:
+    Ui::Friend *ui;
 };
 
 #endif // FRIEND_H

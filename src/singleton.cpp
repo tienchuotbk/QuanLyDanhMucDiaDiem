@@ -12,7 +12,7 @@
 #include "loginform.h"
 #include <QDebug>
 #include "pthread.h"
-#define BUFF_SIZE 1024
+#define BUFF_SIZE 2048
 
 
 Singleton::Singleton() {
@@ -60,10 +60,12 @@ char* Singleton::sendandrecieve(char* str) {
         return nullptr; // Return nullptr to indicate failure
     }
     temp[this->bytes_received] = '\0';
-    qDebug() << "Get receive from server:\n" + QString::fromUtf8(temp);
-    QString tmp = QString::fromUtf8(temp);
-    delete[] temp; // Free memory before returning
-    return tmp.toUtf8().data();
+    qDebug() << "Get receive from server:" + QString::fromUtf8(temp);
+//    QString tmp = QString::fromUtf8(temp);
+//    delete[] temp; // Free memory before returning
+//    return tmp.toUtf8().data();
+    return temp;
+    delete[] temp;
 }
 
 void* Singleton::receiveMessages()

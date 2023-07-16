@@ -29,9 +29,10 @@ void postscreen::on_btn_post_clicked()
 {
     this->collect_input();
     User&user = User::getInstance();
-    QString req = "PUT_SHLC{\"userId\": "+QString::number(user.get_userid())+"\", \"type\": 1, \"userName\": \""+user.get_username()+"\", \"name\": \""+this->location_name
+    QString req = "PUT_SHLC{\"userId\": "+QString::number(user.get_userid())+", \"type\": 1, \"userName\": \""+user.get_username()+"\", \"name\": \""+this->location_name
             +"\", \"type\": "+QString::number(this->type)+", \"address\": \""+this->address+"\"}";
     char *jsonData = Singleton::getInstance().sendandrecieve(req.toUtf8().data());
     qDebug()<< jsonData;
+    this->close();
 }
 
