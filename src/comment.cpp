@@ -97,7 +97,8 @@ void comment::on_btn_viewUser_clicked()
 
 void comment::on_pushButton_clicked()
 {
-    QString req = "GET_RECO{\"userId\": "+QString::number(User::getInstance().get_userid())+"}";
+    //REQ_ADDF{"userId": 1, "locationId": 4}
+    QString req = "REQ_ADDS{\"userId\": "+QString::number(User::getInstance().get_userid())+", \"locationId\": "+this->locationId+"}";
     char *response = Singleton::getInstance().sendandrecieve(req.toUtf8().data());
     qDebug() << response;
 }

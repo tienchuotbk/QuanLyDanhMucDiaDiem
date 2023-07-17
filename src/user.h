@@ -18,10 +18,15 @@ public:
     QString get_username();
     QString get_password();
     void set_password(QString newpass);
+    QString name;
+    int age;
+    QString phone;
+    QString address;
 private:
     int user_id;
     QString username;
     QString password;
+
     User();
     User(const User&) = delete;
     User& operator=(const User&) = delete;

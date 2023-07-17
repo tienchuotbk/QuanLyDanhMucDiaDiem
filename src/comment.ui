@@ -21,19 +21,24 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>100</x>
-     <y>30</y>
-     <width>301</width>
+     <x>70</x>
+     <y>20</y>
+     <width>341</width>
      <height>61</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <family>Ubuntu</family>
+     <family>Source Code Pro</family>
      <pointsize>22</pointsize>
-     <weight>75</weight>
-     <bold>true</bold>
+     <weight>9</weight>
+     <italic>false</italic>
+     <bold>false</bold>
     </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 75 22pt &quot;Source Code Pro&quot;;
+color: rgb(0, 0, 127);</string>
    </property>
    <property name="text">
     <string>Details of location</string>
@@ -68,6 +73,9 @@
       </item>
       <item row="0" column="1">
        <widget class="QLabel" name="label_username">
+        <property name="styleSheet">
+         <string notr="true">font: 75 10pt &quot;Source Code Pro&quot;;</string>
+        </property>
         <property name="text">
          <string>TextLabel</string>
         </property>
@@ -90,6 +98,9 @@
       </item>
       <item row="1" column="1">
        <widget class="QLabel" name="label_id">
+        <property name="styleSheet">
+         <string notr="true">font: 75 10pt &quot;Source Code Pro&quot;;</string>
+        </property>
         <property name="text">
          <string>TextLabel</string>
         </property>
@@ -112,6 +123,9 @@
       </item>
       <item row="2" column="1">
        <widget class="QLabel" name="label_locationName">
+        <property name="styleSheet">
+         <string notr="true">font: 75 10pt &quot;Source Code Pro&quot;;</string>
+        </property>
         <property name="text">
          <string>TextLabel</string>
         </property>
@@ -134,6 +148,9 @@
       </item>
       <item row="4" column="1">
        <widget class="QLabel" name="label_address">
+        <property name="styleSheet">
+         <string notr="true">font: 75 10pt &quot;Source Code Pro&quot;;</string>
+        </property>
         <property name="text">
          <string>TextLabel</string>
         </property>
@@ -156,6 +173,9 @@
       </item>
       <item row="3" column="1">
        <widget class="QLabel" name="label_type">
+        <property name="styleSheet">
+         <string notr="true">font: 75 10pt &quot;Source Code Pro&quot;;</string>
+        </property>
         <property name="text">
          <string>TextLabel</string>
         </property>
@@ -173,13 +193,20 @@
         <bold>true</bold>
        </font>
       </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(0, 0, 127);</string>
+      </property>
       <property name="text">
        <string>Comment</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QListWidget" name="listcomment"/>
+     <widget class="QListWidget" name="listcomment">
+      <property name="styleSheet">
+       <string notr="true">font: 75 10pt &quot;Source Code Pro&quot;;</string>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>
@@ -191,6 +218,11 @@
      <width>111</width>
      <height>41</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 75 10pt &quot;Source Code Pro&quot;;
+background-color: rgb(0, 0, 127);
+color: rgb(255, 255, 255);</string>
    </property>
    <property name="text">
     <string>Comment</string>
@@ -215,6 +247,11 @@
      <height>41</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">font: 75 10pt &quot;Source Code Pro&quot;;
+background-color: rgb(0, 0, 127);
+color: rgb(255, 255, 255);</string>
+   </property>
    <property name="text">
     <string>View user</string>
    </property>
@@ -227,6 +264,11 @@
      <width>111</width>
      <height>41</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 75 10pt &quot;Source Code Pro&quot;;
+background-color: rgb(0, 0, 127);
+color: rgb(255, 255, 255);</string>
    </property>
    <property name="text">
     <string>Save Location</string>

@@ -19,6 +19,7 @@
 #include "changeinfor.h"
 #include "friendinfo.h"
 #include "comment.h"
+#include "QThread"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -28,8 +29,10 @@ MainWindow::MainWindow(QWidget *parent) :
 
     this->reload_infor();
     this->get_listfriend();
+    this->get_liststranger();
 this->general_load();
     connect(ui->listWidget, &QListWidget::itemDoubleClicked, this, &MainWindow::on_btn_item_clicked);
+    connect(ui->listWidget2, &QListWidget::itemDoubleClicked, this, &MainWindow::on_btn_item_clicked);
     connect(ui->feed, &QListWidget::itemDoubleClicked, this, &MainWindow::on_feeditem_clicked);
 }
 
@@ -61,6 +64,51 @@ void MainWindow::get_listfriend(){
            if (jsonObj["success"].toInt() == 1) {
                // Lấy mảng "friend"
                QJsonArray friendArray = jsonObj["friend"].toArray();
+
+               // Tạo QListWidget và QTreeWidget
+               QTreeWidget treeWidget;
+               treeWidget.setHeaderLabels(QStringList() << "Key" << "Value");
+
+               // Duyệt qua mảng "friend"
+               foreach (const QJsonValue& friendValue, friendArray) {
+                   // Lấy thông tin từng người bạn
+                   QJsonObject friendObj = friendValue.toObject();
+                   int id = friendObj["id"].toInt();
+                   QString name = friendObj["name"].toString();
+
+                   // Thêm thông tin vào QListWidget
+                   QString listItem = QString("%1 (%2)").arg(name, "ID: "+QString::number(id));
+
+                   listfriend->addItem(listItem);
+
+               }
+               listfriend->show();
+
+           } else {
+               qDebug() << "Error: Request unsuccessful or user dont have friend";
+           }
+       } else {
+           qDebug() << "Error: Invalid JSON data";
+       }
+}
+
+void MainWindow::get_liststranger(){
+    QListWidget* listfriend = ui->listWidget2;
+    //GET_STRG
+    //{"success": 1, "stranger": [{"id": 3, "name": "Nguyen Duc Phuc", "age": 25, "phone": "0123895654", "address": "Sai Gon"}]}
+    QString req = "GET_STRG{\"userId\": "+QString::number(User::getInstance().get_userid())+"}";
+    qDebug() << req;
+    char *jsonData = Singleton::getInstance().sendandrecieve(req.toUtf8().data());
+    qDebug() << jsonData;
+
+    QByteArray jsonByteArray(jsonData);
+    QJsonDocument jsonDoc = QJsonDocument::fromJson(jsonByteArray);
+    if (!jsonDoc.isNull()) {
+           QJsonObject jsonObj = jsonDoc.object();
+           // Kiểm tra giá trị "success"
+           if (jsonObj["success"].toInt() == 1) {
+               // Lấy mảng "friend"
+               QJsonArray friendArray = jsonObj["stranger"].toArray();
 
                // Tạo QListWidget và QTreeWidget
                QTreeWidget treeWidget;
@@ -126,7 +174,6 @@ void MainWindow::on_btn_post_clicked()
     postscreen *post = new postscreen();
     post->exec();
     delete post;
-    this->reload_infor();
 }
 
 
@@ -173,7 +220,7 @@ void MainWindow::on_comboBox_currentIndexChanged(int index)
         // Do further processing with the JSON data
         QJsonObject jsonObj = jsonDoc.object();
         QJsonArray array = jsonObj["location"].toArray();
-        this->load_feed(array);
+        this->load_notfeed(array);
     }
 
     // Don't forget to clean up the dynamically allocated jsonDataNullTerminated
@@ -195,7 +242,7 @@ void MainWindow::load_feed(QJsonArray ar)
         int locationId = itemObj["locationId"].toInt();
         QString locationName = itemObj["locationName"].toString();
         int type = itemObj["type"].toInt();
-        QString address = itemObj["locationAdd"].toString();
+        QString address = itemObj["address"].toString();
 
         QString listItem;
 
@@ -207,6 +254,31 @@ void MainWindow::load_feed(QJsonArray ar)
             listItem = QString("\n(%1). %2 (%3) shared a location\n  >Name : %4\n    >Category: %5\n      >Address: %6\n        >( Click to view comment)\n__________________________________________________________________________________________________").arg(
                     QString::number(locationId), name, "ID: "+QString::number(id), locationName, values.at(type), address);
         }
+        feed->addItem(listItem);
+    }
+    feed->show();
+}
+
+void MainWindow::load_notfeed(QJsonArray ar){
+    QVector<QString> values = {"ALL","School", "Coffe", "Restaurant", "Park", "Mall", "Market", "Hospital", "Others"};
+    QListWidget* feed = ui->feed;
+    feed->clear();
+    foreach (const QJsonValue& item, ar) {
+        // Lấy thông tin
+        //"userId": 2, "userName": "Nguyen Ngoc Tu", "locationId": 5, "locationName": "Bach Mai", "type": 7, "locationAdd": "15 Giai Phong, Hai Ba Trung, Ha Noi"}, {"userId": 1, "userName": "Tien Chuot", "locationId": 4, "locationName": "Dong Xuan", "type": 6, "locationAdd": "Hang Buom, Hoan Kiem, Ha Noi"}, {"userId": 2, "userName": "Nguyen Ngoc Tu", "locationId": 3, "locationName": "Lau Phan", "type": 3, "locationAdd": "15 Pho Hue, Hai Ba Trung, Ha Noi"}, {"userId": 1, "userName": "Tien Chuot", "locationId": 2, "locationName": "Gongtea", "type": 2, "locationAdd": "23 Vu Trong Phung, Thanh Xuan, Ha Noi"}, {"userId": 1, "userName": "Tien Chuot", "locationId": 1, "locationName": "Dai hoc Bach Khoa Ha Noi", "type": 1, "locationAdd": "1 Dai Co Viet, Hai Ba Trung, Ha Noi"
+        QJsonObject itemObj = item.toObject();
+        QString name = itemObj["userName"].toString();
+        int locationId = itemObj["id"].toInt();
+        QString locationName = itemObj["name"].toString();
+        int type = itemObj["type"].toInt();
+        QString address = itemObj["address"].toString();
+
+        QString listItem;
+
+        // Thêm thông tin vào QListWidget
+
+        listItem = QString("\n(%1) (%2) %3 at %4\n     >( Click to view comment)\n__________________________________________________________________________________________________").arg(
+                    QString::number(locationId), values.at(type), locationName, address);
         feed->addItem(listItem);
     }
     feed->show();
@@ -264,9 +336,12 @@ void MainWindow::on_btn_reload_clicked()
     ui->comboBox->setCurrentIndex(0);
     ui->input_search->setText("");
     ui->feed->clear();
-    this->general_load();
     ui->listWidget->clear();
+    ui->listWidget2->clear();
+
     this->get_listfriend();
+    this->get_liststranger();
+    this->general_load();
 }
 
 
@@ -307,7 +382,7 @@ void MainWindow::on_btn_search_clicked()
         // Do further processing with the JSON data
         QJsonObject jsonObj = jsonDoc.object();
         QJsonArray array = jsonObj["location"].toArray();
-        this->load_feed(array);
+        this->load_notfeed(array);
     }
 
     // Don't forget to clean up the dynamically allocated jsonDataNullTerminated
@@ -351,7 +426,7 @@ void MainWindow::on_btn_location_save_clicked()
         // Do further processing with the JSON data
         QJsonObject jsonObj = jsonDoc.object();
         QJsonArray array = jsonObj["saveLocation"].toArray();
-        this->load_feed(array);
+        this->load_notfeed(array);
     }
 
     // Don't forget to clean up the dynamically allocated jsonDataNullTerminated
@@ -394,7 +469,7 @@ void MainWindow::on_pushButton_clicked()
         // Do further processing with the JSON data
         QJsonObject jsonObj = jsonDoc.object();
         QJsonArray array = jsonObj["location"].toArray();
-        this->load_feed(array);
+        this->load_notfeed(array);
     }
 
     // Don't forget to clean up the dynamically allocated jsonDataNullTerminated

@@ -13,7 +13,6 @@ SOURCES += \
     client.cpp \
     comment.cpp \
     friendinfo.cpp \
-    location.cpp \
     login.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -26,7 +25,6 @@ HEADERS += \
     client.h \
     comment.h \
     friendinfo.h \
-    location.h \
     login.h \
     mainwindow.h \
     post.h \

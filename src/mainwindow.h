@@ -24,6 +24,8 @@ public:
     void reload_infor();
     void load_feed(QJsonArray ar);
     void general_load();
+    void load_notfeed(QJsonArray ar);
+    void get_liststranger();
 
 
 private slots:

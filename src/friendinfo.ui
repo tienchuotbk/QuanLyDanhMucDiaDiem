@@ -21,19 +21,24 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>130</x>
-     <y>30</y>
-     <width>271</width>
+     <x>90</x>
+     <y>20</y>
+     <width>361</width>
      <height>61</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <family>Ubuntu</family>
-     <pointsize>20</pointsize>
-     <weight>75</weight>
-     <bold>true</bold>
+     <family>Source Code Pro</family>
+     <pointsize>22</pointsize>
+     <weight>9</weight>
+     <italic>false</italic>
+     <bold>false</bold>
     </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 75 22pt &quot;Source Code Pro&quot;;
+color: rgb(0, 0, 127);</string>
    </property>
    <property name="text">
     <string>Friend's information</string>
@@ -66,6 +71,9 @@
     </item>
     <item row="0" column="1">
      <widget class="QLabel" name="label_user_id">
+      <property name="styleSheet">
+       <string notr="true">font: 75 10pt &quot;Source Code Pro&quot;;</string>
+      </property>
       <property name="text">
        <string>TextLabel</string>
       </property>
@@ -88,6 +96,9 @@
     </item>
     <item row="1" column="1">
      <widget class="QLabel" name="label_name">
+      <property name="styleSheet">
+       <string notr="true">font: 75 10pt &quot;Source Code Pro&quot;;</string>
+      </property>
       <property name="text">
        <string>TextLabel</string>
       </property>
@@ -110,6 +121,9 @@
     </item>
     <item row="2" column="1">
      <widget class="QLabel" name="label_age">
+      <property name="styleSheet">
+       <string notr="true">font: 75 10pt &quot;Source Code Pro&quot;;</string>
+      </property>
       <property name="text">
        <string>TextLabel</string>
       </property>
@@ -132,6 +146,9 @@
     </item>
     <item row="3" column="1">
      <widget class="QLabel" name="label_phone">
+      <property name="styleSheet">
+       <string notr="true">font: 75 10pt &quot;Source Code Pro&quot;;</string>
+      </property>
       <property name="text">
        <string>TextLabel</string>
       </property>
@@ -154,6 +171,9 @@
     </item>
     <item row="4" column="1">
      <widget class="QLabel" name="label_address">
+      <property name="styleSheet">
+       <string notr="true">font: 75 10pt &quot;Source Code Pro&quot;;</string>
+      </property>
       <property name="text">
        <string>TextLabel</string>
       </property>
@@ -169,6 +189,11 @@
      <width>121</width>
      <height>31</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 75 10pt &quot;Source Code Pro&quot;;
+background-color: rgb(0, 0, 127);
+color: rgb(255, 255, 255);</string>
    </property>
    <property name="text">
     <string>Follow</string>

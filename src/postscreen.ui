@@ -27,6 +27,11 @@
      <height>31</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">font: 75 10pt &quot;Source Code Pro&quot;;
+background-color: rgb(0, 0, 127);
+color: rgb(255, 255, 255);</string>
+   </property>
    <property name="text">
     <string>Post</string>
    </property>
@@ -43,16 +48,26 @@
    <layout class="QFormLayout" name="formLayout">
     <item row="0" column="0">
      <widget class="QLabel" name="label">
+      <property name="styleSheet">
+       <string notr="true">font: 75 10pt &quot;Source Code Pro&quot;;</string>
+      </property>
       <property name="text">
        <string>Name of location</string>
       </property>
      </widget>
     </item>
     <item row="0" column="1">
-     <widget class="QLineEdit" name="input_name"/>
+     <widget class="QLineEdit" name="input_name">
+      <property name="styleSheet">
+       <string notr="true">font: 75 10pt &quot;Source Code Pro&quot;;</string>
+      </property>
+     </widget>
     </item>
     <item row="1" column="0">
      <widget class="QLabel" name="label_4">
+      <property name="styleSheet">
+       <string notr="true">font: 75 10pt &quot;Source Code Pro&quot;;</string>
+      </property>
       <property name="text">
        <string>Category</string>
       </property>
@@ -60,6 +75,9 @@
     </item>
     <item row="1" column="1">
      <widget class="QComboBox" name="combo_type">
+      <property name="styleSheet">
+       <string notr="true">font: 75 10pt &quot;Source Code Pro&quot;;</string>
+      </property>
       <item>
        <property name="text">
         <string>School</string>
@@ -104,32 +122,44 @@
     </item>
     <item row="2" column="0">
      <widget class="QLabel" name="label_2">
+      <property name="styleSheet">
+       <string notr="true">font: 75 10pt &quot;Source Code Pro&quot;;</string>
+      </property>
       <property name="text">
        <string>Address</string>
       </property>
      </widget>
     </item>
     <item row="2" column="1">
-     <widget class="QPlainTextEdit" name="input_address"/>
+     <widget class="QPlainTextEdit" name="input_address">
+      <property name="styleSheet">
+       <string notr="true">font: 75 10pt &quot;Source Code Pro&quot;;</string>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>
   <widget class="QLabel" name="label_5">
    <property name="geometry">
     <rect>
-     <x>140</x>
+     <x>110</x>
      <y>20</y>
-     <width>291</width>
+     <width>341</width>
      <height>61</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <family>Ubuntu</family>
+     <family>Source Code Pro</family>
      <pointsize>22</pointsize>
-     <weight>75</weight>
-     <bold>true</bold>
+     <weight>9</weight>
+     <italic>false</italic>
+     <bold>false</bold>
     </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 75 22pt &quot;Source Code Pro&quot;;
+color: rgb(0, 0, 127);</string>
    </property>
    <property name="text">
     <string>Share your location</string>
