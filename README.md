@@ -1,2 +1,2 @@
 # QuanLyDanhMucDiaDiem
-Using socket
+Using socket and QT
